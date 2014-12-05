@@ -1,9 +1,20 @@
 var Person = function(name, age, height, weight){
 	Mammal.call(this, name);
 
-	this.age = age;
+	this._age = age;
 	this.height = height;
 	this.weight = weight;
+
+	Object.defineProperty(this, 'age', {
+		get: function() {
+			console.log('im super secret');
+			return this._age;
+		},
+		set: function(a) {
+			console.log('setting');
+			_age = a;
+		}
+	});
 };
 
 Person.prototype = Object.create(Mammal.prototype);
